@@ -1,1 +1,13 @@
-{"name":"letterloop-live","private":true,"type":"module","scripts":{"test":"node --test tests/*.test.mjs","check":"node --check web/app.js && node --check web/backend.js && node --check scripts/build-config.mjs","build":"node scripts/build-config.mjs"},"devDependencies":{"@electric-sql/pglite":"0.3.14"}}
+{
+  "name": "letterloop-live",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "check": "node --check web/app.js && node --check web/backend.js && node --check scripts/build-config.mjs",
+    "build": "node scripts/build-config.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.3.14"
+  }
+}

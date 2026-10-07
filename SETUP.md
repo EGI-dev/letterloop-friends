@@ -51,7 +51,7 @@ Set these **server secrets** in Supabase Edge Function Secrets:
 
 Supabase supplies `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to the function itself. Do not publish or manually copy those to the frontend.
 
-Under Supabase Vault add `letterloop_project_url` (the public project URL) and `letterloop_job_secret` (the **same JOB_SECRET**). Then run `supabase/schedule.sql`. It enables pg_cron/pg_net, invokes the function hourly and removes old cron logs. Restrict Vault access to database administrators. Enabling a scheduler without secrets/SMTP is not a working reminder service.
+Under Supabase Vault add `letterloop_project_url` (the public project URL) and `letterloop_job_secret` (the **same JOB_SECRET**). Then run `supabase/schedule.sql`. It enables pg_cron/pg_net, invokes the function every fifteen minutes and removes old cron logs. Restrict Vault access to database administrators. Enabling a scheduler without secrets/SMTP is not a working reminder service.
 
 The function is deliberately self-contained, so it can also be deployed through the Supabase dashboard's function editor. The CLI alternative is `supabase functions deploy reminders --project-ref YOUR_REF --no-verify-jwt` after authorized login.
 
