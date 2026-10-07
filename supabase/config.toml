@@ -1,0 +1,3 @@
+[functions.reminders]
+# The cron uses an independent secret, rather than visitor JWTs.
+verify_jwt = false
