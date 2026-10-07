@@ -1,6 +1,6 @@
 # Connect the live services
 
-Do not post secret values in chat, issues, commits, or the browser configuration. Dashboard entry of a new database password or new API credential is completed by the account owner.
+Do not post secret values in chat, issues, commits, or the browser configuration. The account owner enters and retains the database password privately. Service credentials belong only in private local configuration and server settings.
 
 ## 1. Supabase database
 
@@ -33,9 +33,11 @@ Finish any Brevo phone/account verification and verify a sender address under Se
 - sender email: the verified sender
 - sender name: `Your people`
 
-Credentials go directly into Supabase, never into the Pages repository. Enable email sign-in and new-user signup. Set Auth URL configuration to the final GitHub Pages URL. Configure the **Magic Link** email template to include `{{ .Token }}` as a visible one-time code (the app uses codes, not callback links). Use the template under `supabase/templates/magic-link.html`. Retain a short OTP expiry and sensible Auth rate limits; six-digit code verification must stay throttled. Supabase's default mail service is restricted to project-team addresses and cannot serve mates reliably, so custom SMTP is required.
+Credentials go directly into Supabase, never into the Pages repository. Enable email sign-in and new-user signup. Set Auth URL configuration to the final GitHub Pages URL. Configure both the **Confirm sign up** and **Magic link or OTP** email templates to include `{{ .Token }}` as a visible one-time code (the app uses codes, not callback links). Use the template under `supabase/templates/magic-link.html`. Retain a short OTP expiry and sensible Auth rate limits; six-digit code verification must stay throttled. Supabase's default mail service is restricted to project-team addresses and cannot serve mates reliably, so custom SMTP is required.
 
 Official guides: [email OTP](https://supabase.com/docs/guides/auth/auth-email-passwordless), [SMTP limitations and setup](https://supabase.com/docs/guides/auth/auth-smtp), [verified senders](https://help.brevo.com/hc/en-us/articles/208836149-Create-a-new-sender-From-name-and-From-email).
+
+If Brevo blocks the first sign-in email, review its Unauthorized IP addresses list. Authorize only the Supabase SMTP server address associated with the failed request after the account owner approves it; keep SMTP IP blocking enabled. A future Supabase infrastructure change may require reviewing a new address.
 
 ## 4. Scheduled updates
 
